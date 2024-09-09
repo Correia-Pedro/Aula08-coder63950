@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Carro - Exercício Aula 8</title>
+</head>
+<body>
+    <h1>Simulador de Carro</h1>
+
+    <p>Velocidade Atual: <span id="velocidade">0</span> km/h</p>
+
+    <button id="acelerar">Acelerar</button>
+    <button id="frear">Frear</button>
+    <button id="parar">Parar</button>
+
+    <script>
+        // Objeto Carro
+        class Carro {
+            constructor(marca, modelo) {
+                this.marca = marca;
+                this.modelo = modelo;
+                this.velocidade = 0; // Velocidade inicial
+            }
+
+            // Método para acelerar o carro
+            acelerar() {
+                this.velocidade += 10; // Incrementa a velocidade em 10 km/h
+            }
+
+            // Método para frear o carro
+            frear() {
+                if (this.velocidade > 0) {
+                    this.velocidade -= 10; // Diminui a velocidade em 10 km/h
+                }
+            }
+
+            // Método para parar o carro
+            parar() {
+                this.velocidade = 0; // Reseta a velocidade para 0
+            }
+
+            // Método para obter a velocidade atual
+            getVelocidade() {
+                return this.velocidade;
+            }
+        }
+
+        // Criando uma instância do carro
+        const meuCarro = new Carro('Ford', 'Mustang');
+
+        // Função para atualizar a velocidade exibida no simulador
+        function atualizarVelocidade() {
+            document.getElementById('velocidade').innerText = meuCarro.getVelocidade();
+        }
+
+        // Manipuladores de eventos para os botões
+        document.getElementById('acelerar').addEventListener('click', () => {
+            meuCarro.acelerar();
+            atualizarVelocidade();
+        });
+
+        document.getElementById('frear').addEventListener('click', () => {
+            meuCarro.frear();
+            atualizarVelocidade();
+        });
+
+        document.getElementById('parar').addEventListener('click', () => {
+            meuCarro.parar();
+            atualizarVelocidade();
+        });
+    </script>
+</body>
+</html>
